@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Enter New Recipe</title>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.2/css/bulma.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="../css/bulma.css">
+  <link rel="stylesheet" type="text/css" href="../css/product.css">
+</head>
+<body>
+	<section class="hero is-primary is-bold">
+	  <div class="hero-body">
+	    <div class="container">
+	      <h1 class="title">
+	        Enter New Recipe
+	      </h1>
+	    </div>
+	  </div>
+	</section>
+  <br>
+  <br>
+  {% if message == "suc"%}
+  <div class="notification is-success" style="width:80%;margin: 0 10%;">
+    Success
+  </div>
+  {% elif message == "err"%}
+  <div class="notification is-danger" style="width:80%;margin: 0 10%;">
+    Danger
+  </div>
+  {% endif%}
+
+<div style="width:80%; margin: 5% 10%;">
+<form method='POST' action='' enctype="multipart/form-data">{% csrf_token %}
+    {{form.as_p}}
+    <div class="field is-grouped">
+    <p class="control">
+      <input class="button is-primary" type="submit" value="Create Post"/>
+    </p>
+  </div>
+</div>
+</form>
+
+<style type="text/css">
+  p{
+    margin-top: 20px;
+  }
+  label{
+    font-weight: bold;
+    color: black;
+  }
+</style>
+
+
+<script type="text/javascript">
+  document.getElementById("id_title").className = "input"
+
+  document.getElementById("id_category").className = "select"
+
+  document.getElementById("id_ingredients").className = "textarea"
+
+  document.getElementById("id_directions").className = "textarea"
+</script>
+
+<script async type="text/javascript" src="../js/bulma.js"></script>
+</body>
+</html>

@@ -1,0 +1,342 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Recipes</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.2/css/bulma.css">
+</head>
+<body>
+	<style type="text/css">
+		@-webkit-keyframes hvr-pulse {
+		  25% {
+		    -webkit-transform: scale(1.1);
+		    transform: scale(1.1);
+		  }
+		  75% {
+		    -webkit-transform: scale(0.9);
+		    transform: scale(0.9);
+		  }
+		}
+		@keyframes hvr-pulse {
+		  25% {
+		    -webkit-transform: scale(1.1);
+		    transform: scale(1.1);
+		  }
+		  75% {
+		    -webkit-transform: scale(0.9);
+		    transform: scale(0.9);
+		  }
+		}
+		.card {
+		  width: 70%;
+		  margin: 2.5% 15%;
+		  float: left;
+		  -webkit-transform: perspective(1px) translateZ(0);
+		  transform: perspective(1px) translateZ(0);
+		}
+/*		.card:hover, .card:focus, .card:active {
+		  -webkit-animation-name: hvr-pulse;
+		  animation-name: hvr-pulse;
+		  -webkit-animation-duration: 1s;
+		  animation-duration: 1s;
+		  -webkit-animation-timing-function: linear;
+		  animation-timing-function: linear;
+		  -webkit-animation-iteration-count: infinite;
+		  animation-iteration-count: infinite;
+		}*/
+		@-webkit-keyframes hvr-pulse-shrink {
+		  to {
+		    -webkit-transform: scale(0.9);
+		    transform: scale(0.9);
+		  }
+		}
+		@keyframes hvr-pulse-shrink {
+		  to {
+		    -webkit-transform: scale(0.9);
+		    transform: scale(0.9);
+		  }
+		}
+		.card:hover, .card:focus, .card:active {
+		  -webkit-animation-name: hvr-pulse-shrink;
+		  animation-name: hvr-pulse-shrink;
+		  -webkit-animation-duration: 0.3s;
+		  animation-duration: 0.3s;
+		  -webkit-animation-timing-function: linear;
+		  animation-timing-function: linear;
+		  -webkit-animation-iteration-count: infinite;
+		  animation-iteration-count: infinite;
+		  -webkit-animation-direction: alternate;
+		  animation-direction: alternate;
+		}
+				
+		#paginationdiv{
+			width: 70%;
+		 	margin: 2.5% 15%;
+		}
+	</style>
+
+	<section class="hero is-medium is-primary is-bold">
+	  <div class="hero-body">
+	    <div class="container">
+	      <h1 class="title">
+	        Recipes
+	      </h1>
+	      <h2 class="subtitle">
+	        By Jared Wasserman
+	      </h2>
+	    </div>
+	  </div>
+	  {% if auth %}
+      <a href='/posts/create/' class="button is-info" style="margin-left:75%;margin-right:5%;margin-bottom:10px;">Create Post</a>
+		<a href='/admin/logout/' class="button is-warning" style="margin-left:75%;margin-right:5%;margin-bottom:10px;">Logout</a>
+      {% endif%}
+	</section>
+	<form method="GET" action="">
+			<div class="field is-grouped"  style="width:90%;margin:5%;">
+  <p class="control is-expanded">
+    <input class="input" type="text" name="q" placeholder="Find a recipe" value="{{request.GET.q}}">
+  </p>
+    <p class="control">
+      <input class="button is-primary" type="submit" value="Search"/>
+    </p>
+</div>
+	</form>
+
+
+
+	  {% if messages %}
+	    {% for message in messages %}
+	      <div class="notification is-success" style="width:80%;margin: 0 10%;margin-top:10px;">
+	      <span class="icon">
+	        <i class="fa fa-check"></i>
+	      </span>
+	        {{message}}
+	      </div>
+	    {% endfor %}
+	  {% endif %}
+
+	{% for object in objects%}
+		{% if object.category == 'APP' %}
+		<a href='{% url "detail" object.slug %}'>
+		<div class="card">
+		  <div class="card-image">
+		    <figure class="image ">
+		    {% if object.image %}
+		    	<img src="{{object.image.url}}">
+		    {% else %}
+		    	<img src="http://bulma.io/images/placeholders/1280x960.png" alt="Image">
+		    {% endif %}
+		    </figure>
+		 	 </div>
+		  <div class="card-content">
+		    <div class="content">
+		     <h3>{{object.title}}</h3>
+			<span class="tag is-primary">Appetizer</span> 
+			<br><small>{{object.timestamp|timesince}}</small>
+			</div>   
+			</div> 
+			</div> 
+			</a>	
+		{% elif object.category == 'SAL' %}
+		<a href='{% url "detail" object.slug %}'>
+			<div class="card">
+		  <div class="card-image">
+		    <figure class="image ">
+		    {% if object.image %}
+		    	<img src="{{object.image.url}}">
+		    {% else %}
+		    	<img src="http://bulma.io/images/placeholders/1280x960.png" alt="Image">
+		    {% endif %}
+		    </figure>
+		 	 </div>
+		  <div class="card-content">
+		    <div class="content">
+		     <h3>{{object.title}}</h3>
+			<span class="tag is-primary">Salad</span> 
+			<br><small>{{object.timestamp|timesince}}</small>
+			</div>   
+			</div> 
+			</div> 
+			</a>	
+		{% elif object.category == 'PAS' %}
+		<a href='{% url "detail" object.slug %}'>
+			<div class="card">
+		  <div class="card-image">
+		    <figure class="image ">
+		    {% if object.image %}
+		    	<img src="{{object.image.url}}">
+		    {% else %}
+		    	<img src="http://bulma.io/images/placeholders/1280x960.png" alt="Image">
+		    {% endif %}
+		    </figure>
+		 	 </div>
+		  <div class="card-content">
+		    <div class="content">
+		     <h3>{{object.title}}</h3>
+			<span class="tag is-primary">Pasta</span> 
+			<br><small>{{object.timestamp|timesince}}</small>
+			</div>   
+			</div> 
+			</div> 
+			</a>	
+		{% elif object.category == 'MEA' %}
+		<a href='{% url "detail" object.slug %}'>
+			<div class="card">
+		  <div class="card-image">
+		    <figure class="image ">
+		    {% if object.image %}
+		    	<img src="{{object.image.url}}">
+		    {% else %}
+		    	<img src="http://bulma.io/images/placeholders/1280x960.png" alt="Image">
+		    {% endif %}
+		    </figure>
+		 	 </div>
+		  <div class="card-content">
+		    <div class="content">
+		     <h3>{{object.title}}</h3>
+			<span class="tag is-primary">Meat</span> 
+			<br><small>{{object.timestamp|timesince}}</small>
+			</div>   
+			</div> 
+			</div> 
+			</a>	
+		{% elif object.category == 'OTH' %}
+		<a href='{% url "detail" object.slug %}'>
+			<div class="card">
+		  <div class="card-image">
+		    <figure class="image ">
+		    {% if object.image %}
+		    	<img src="{{object.image.url}}">
+		    {% else %}
+		    	<img src="http://bulma.io/images/placeholders/1280x960.png" alt="Image">
+		    {% endif %}
+		    </figure>
+		 	 </div>
+		  <div class="card-content">
+		    <div class="content">
+		     <h3>{{object.title}}</h3>
+			<span class="tag is-primary">Other Entree</span>
+			<br><small>{{object.timestamp|timesince}}</small>
+			</div>   
+			</div> 
+			</div> 
+			</a>	
+		{% elif object.category == 'SID' %}
+		<a href='{% url "detail" object.slug %}'>
+			<div class="card">
+		  <div class="card-image">
+		    <figure class="image ">
+		    {% if object.image %}
+		    	<img src="{{object.image.url}}">
+		    {% else %}
+		    	<img src="http://bulma.io/images/placeholders/1280x960.png" alt="Image">
+		    {% endif %}
+		    </figure>
+		 	 </div>
+		  <div class="card-content">
+		    <div class="content">
+		     <h3>{{object.title}}</h3>
+			<span class="tag is-primary">Side</span> 
+			<br><small>{{object.timestamp|timesince}}</small>
+			</div>   
+			</div> 
+			</div> 
+			</a>	
+		{% elif object.category == 'DES' %}
+		<a href='{% url "detail" object.slug %}'>
+			<div class="card">
+		  <div class="card-image">
+		    <figure class="image ">
+		    {% if object.image %}
+		    	<img src="{{object.image.url}}">
+		    {% else %}
+		    	<img src="http://bulma.io/images/placeholders/1280x960.png" alt="Image">
+		    {% endif %}
+		    </figure>
+		 	 </div>
+		  <div class="card-content">
+		    <div class="content">
+		     <h3>{{object.title}}</h3>
+		     
+			<span class="tag is-primary">Dessert</span> 
+			<br><small>{{object.timestamp|timesince}}</small>
+			
+			</div>   
+			</div> 
+			</div> 
+		</a>	
+		{% endif%}
+		
+		 
+	{% endfor %}
+
+	<nav class="pagination is-centered" id="paginationdiv">
+			{% if objects.has_previous %}
+	        	<a href="?page={{ objects.previous_page_number }}{% if request.GET.q %}&q={{request.GET.q}}{%endif%}" class="pagination-previous">Previous</a>
+	        {% else %}
+	        	<a class="pagination-previous" disabled>Previous</a>
+	        {% endif %}
+	        
+	        {% if objects.has_next %}
+        		<a href="?page={{ objects.next_page_number }}{% if request.GET.q %}&q={{request.GET.q}}{%endif%}" class="pagination-next">Next page</a>
+        	{% else %}
+        		<a class="pagination-next" disabled>Next page</a>
+        	{% endif %}
+
+
+
+		  <ul class="pagination-list">
+		  	{% if objects.number == 1%}
+		  		<li><a class="pagination-link is-current" href="?page={{ 1 }}{% if request.GET.q %}&q={{request.GET.q}}{%endif%}">1</a></li>
+		  	{% else %}
+		  		<li><a class="pagination-link" href="?page={{ 1 }}{% if request.GET.q %}&q={{request.GET.q}}{%endif%}">1</a></li>
+		  	{% endif %}
+
+		  	{% if not oneORTwo %}
+			  	{% if numMiddle == 0%}
+			  		<li><span class="pagination-ellipsis">&hellip;</span></li>
+
+				    {% if objects.number != 1 and objects.number != last_page %}
+				    	<li><a href="?page={{ objects.number }}{% if request.GET.q %}&q={{request.GET.q}}{%endif%}" class="pagination-link is-current">{{objects.number}}</a></li>
+				    {% else %}
+				    	<li><a href="?page={{ middle }}{% if request.GET.q %}&q={{request.GET.q}}{%endif%}" class="pagination-link">{{middle}}</a></li>
+				    	<li><a href="?page={{ middle2 }}{% if request.GET.q %}&q={{request.GET.q}}{%endif%}" class="pagination-link">{{middle2}}</a></li>
+				    {% endif %}
+
+				    <li><span class="pagination-ellipsis">&hellip;</span></li>
+			  	{% else %}
+				  	<li><span class="pagination-ellipsis">&hellip;</span></li>
+
+				    {% if objects.number != 1 and objects.number != last_page %}
+				    	<li><a href="?page={{ objects.number }}{% if request.GET.q %}&q={{request.GET.q}}{%endif%}" class="pagination-link is-current">{{objects.number}}</a></li>
+				    {% else %}
+				    	<li><a href="?page={{ middle }}{% if request.GET.q %}&q={{request.GET.q}}{%endif%}" class="pagination-link">{{middle}}</a></li>
+				    {% endif %}
+
+				    <li><span class="pagination-ellipsis">&hellip;</span></li>
+			  	{% endif%}
+		  	{% endif %}
+
+		    {% if objects.number == last_page and last_page != 1 %}
+		  		<li><a class="pagination-link is-current" href="?page={{ last_page  }}{% if request.GET.q %}&q={{request.GET.q}}{%endif%}">{{ last_page }}</a></li>
+		  	{% elif last_page != 1 %}
+		  		<li><a class="pagination-link" href="?page={{ last_page  }}{% if request.GET.q %}&q={{request.GET.q}}{%endif%}">{{ last_page }}</a></li>
+		  	{% endif %}	    
+		  </ul>
+		</nav>
+
+	<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p>
+        
+      </p>
+    </div>
+  </div>
+</footer>
+
+
+
+</body>
+</html>

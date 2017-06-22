@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Recipes | {{instance.title}}</title>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.2/css/bulma.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="../css/bulma.css">
+  <link rel="stylesheet" type="text/css" href="../css/product.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-left">
+    <a class="nav-item" href='/'>
+    <span class="icon">
+        <i class="fa fa-arrow-left"></i>  
+      </span>
+      Back To All Recipes
+    </a>
+  </div>
+</nav>
+	<section class="hero is-primary is-bold">
+	  <div class="hero-body">
+	    <div class="container">
+	      <h1 class="title">
+	        {{instance.title}}
+	      </h1>
+	      {%if instance.category == "APP" %}
+	      <span class="tag is-info is-medium">Appetizer</span> 
+	      {%elif instance.category == "SAL" %}
+	      <span class="tag is-info is-medium">Salad</span> 
+	      {%elif instance.category == "PAS" %}
+	      <span class="tag is-info is-medium">Pasta</span> 
+	      {%elif instance.category == "MEA" %}
+	      <span class="tag is-info is-medium">Meat</span> 
+	      {%elif instance.category == "OTH" %}
+	      <span class="tag is-info is-medium">Other Entree</span> 
+	      {%elif instance.category == "SID" %}
+	      <span class="tag is-info is-medium">Side</span> 
+	      {%elif instance.category == "DES" %}
+	      <span class="tag is-info is-medium">Dessert</span> 
+	      {% endif %}
+	    </div>
+	  </div>
+	</section>
+  {% if messages %}
+    {% for message in messages %}
+      <div class="notification is-success" style="width:80%;margin: 0 10%;margin-top:10px;">
+      <span class="icon">
+        <i class="fa fa-check"></i>
+      </span>
+        {{message}}
+      </div>
+    {% endfor %}
+  {% endif %}
+
+
+  <div class="section">
+    <div class="container">
+              <div class="image is-2by2">
+                  {% if instance.image %}
+                  <img src="{{instance.image.url}}">
+                {% else %}
+                  <img src="http://bulma.io/images/placeholders/1280x960.png" alt="Image">
+                {% endif %}
+          </div>
+      <div class="columns">
+          <div class="column" style="padding:30px;">
+            <div class="title is-2">Ingredients</div>
+            <dl>
+            {% for ingredient in instance.ingredients_as_list %}
+           <li>{{ingredient}}</li><br>
+           {% endfor %}
+         </dl>
+          </div>
+          <div class="column" style="padding:30px;">
+          <div class="title is-2">Directions</div>
+            <dl>
+            {% for direction in instance.directions_as_list %}
+         <li>{{direction}}</li><br>
+          {% endfor %}
+          </dl>
+          </div>
+      
+    </div>
+    <small>{{instance.timestamp}}</small>
+    {% if auth %}
+      <a href='{% url "update" instance.slug %}' class="button is-info" style="width:10%;margin-left:90%;">Edit</a>
+      <a href='{% url "delete" instance.slug %}' class="button is-danger" style="width:10%;margin-left:90%;margin-top:10px;">Delete</a>
+      {% endif%}
+
+
+
+  </div>
+
+<script async type="text/javascript" src="../js/bulma.js"></script>
+</body>
+</html>

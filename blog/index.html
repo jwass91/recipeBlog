@@ -1,0 +1,258 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="bulma/css/bulma.css">
+</head>
+<body>
+	<section class="hero is-medium is-primary is-bold">
+	  <div class="hero-body">
+	    <div class="container">
+	      <h1 class="title">
+	        Recipes
+	      </h1>
+	      <h2 class="subtitle">
+	        By Jared Wasserman
+	      </h2>
+	    </div>
+	  </div>
+	</section>
+
+	<div class="tabs is-centered">
+	  <ul>
+	    <li id="appTag" class="is-active">
+	      <a onclick='return show_app()'>
+	        <span>Appetizers</span>
+	      </a>
+	    </li>
+	    <li id="salTag">
+	      <a onclick='return show_sal()'>
+	        <span>Salads</span>
+	      </a>
+	    </li>
+	    <li id="pasTag">
+	      <a onclick='return show_pas()'>
+	        <span>Pasta</span>
+	      </a>
+	    </li>
+	    <li id="meaTag">
+	      <a onclick='return show_mea()'>
+	        <span>Meats</span>
+	      </a>
+	    </li>
+	    <li id="othTag">
+	      <a onclick='return show_oth()'>
+	        <span>Other Entrees</span>
+	      </a>
+	    </li>
+	    <li id="sidTag">
+	      <a onclick='return show_sid()'>
+	        <span>Sides</span>
+	      </a>
+	    </li>
+	    <li id="desTag">
+	      <a onclick='return show_des()'>
+	        <span>Desserts</span>
+	      </a>
+	    </li>
+	  </ul>
+	</div>
+
+	<script type="text/javascript">
+		var appTag = document.getElementById("appTag");
+		var salTag = document.getElementById("salTag");
+		var pasTag = document.getElementById("pasTag");
+		var meaTag = document.getElementById("meaTag");
+		var othTag = document.getElementById("othTag");
+		var sidTag = document.getElementById("sidTag");
+		var desTag = document.getElementById("desTag");
+		function show_app(){
+			appTag.className = "is-active";
+			salTag.className = "";
+			pasTag.className = "";
+			meaTag.className = "";
+			othTag.className = "";
+			sidTag.className = "";
+			desTag.className = "";
+
+			document.getElementById("#appID").hidden = false;
+			document.getElementById("sal").hidden = true;
+			document.getElementById("pas").hidden = true;
+			document.getElementById("mea").hidden = true;
+			document.getElementById("oth").hidden = true;
+			document.getElementById("sid").hidden = true;
+			document.getElementById("des").hidden = true;
+		}
+		function show_sal(){
+			appTag.className = "";
+			salTag.className = "is-active";
+			pasTag.className = "";
+			meaTag.className = "";
+			othTag.className = "";
+			sidTag.className = "";
+			desTag.className = "";
+
+			document.getElementById("appID").hidden = true;
+			document.getElementById("sal").hidden = false;
+			document.getElementById("pas").hidden = true;
+			document.getElementById("mea").hidden = true;
+			document.getElementById("oth").hidden = true;
+			document.getElementById("sid").hidden = true;
+			document.getElementById("des").hidden = true;
+		}
+		function show_pas(){
+			appTag.className = "";
+			salTag.className = "";
+			pasTag.className = "is-active";
+			meaTag.className = "";
+			othTag.className = "";
+			sidTag.className = "";
+			desTag.className = "";
+
+			document.getElementById("appID").hidden = true;
+			document.getElementById("sal").hidden = true;
+			document.getElementById("pas").hidden = false;
+			document.getElementById("mea").hidden = true;
+			document.getElementById("oth").hidden = true;
+			document.getElementById("sid").hidden = true;
+			document.getElementById("des").hidden = true;
+		}
+		function show_mea(){
+			appTag.className = "";
+			salTag.className = "";
+			pasTag.className = "";
+			meaTag.className = "is-active";
+			othTag.className = "";
+			sidTag.className = "";
+			desTag.className = "";
+
+			document.getElementById("appID").hidden = true;
+			document.getElementById("sal").hidden = true;
+			document.getElementById("pas").hidden = true;
+			document.getElementById("mea").hidden = false;
+			document.getElementById("oth").hidden = true;
+			document.getElementById("sid").hidden = true;
+			document.getElementById("des").hidden = true;
+		}
+		function show_oth(){
+			appTag.className = "";
+			salTag.className = "";
+			pasTag.className = "";
+			meaTag.className = "";
+			othTag.className = "is-active";
+			sidTag.className = "";
+			desTag.className = "";
+
+			document.getElementById("appID").hidden = true;
+			document.getElementById("sal").hidden = true;
+			document.getElementById("pas").hidden = true;
+			document.getElementById("mea").hidden = true;
+			document.getElementById("oth").hidden = false;
+			document.getElementById("sid").hidden = true;
+			document.getElementById("des").hidden = true;
+		}
+		function show_sid(){
+			appTag.className = "";
+			salTag.className = "";
+			pasTag.className = "";
+			meaTag.className = "";
+			othTag.className = "";
+			sidTag.className = "is-active";
+			desTag.className = "";
+
+			document.getElementById("appID").hidden = true;
+			document.getElementById("sal").hidden = true;
+			document.getElementById("pas").hidden = true;
+			document.getElementById("mea").hidden = true;
+			document.getElementById("oth").hidden = true;
+			document.getElementById("sid").hidden = false;
+			document.getElementById("des").hidden = true;
+		}
+		function show_des(){
+			appTag.className = "";
+			salTag.className = "";
+			pasTag.className = "";
+			meaTag.className = "";
+			othTag.className = "";
+			sidTag.className = "";
+			desTag.className = "is-active";
+
+			document.getElementById("appID").hidden = true;
+			document.getElementById("sal").hidden = true;
+			document.getElementById("pas").hidden = true;
+			document.getElementById("mea").hidden = true;
+			document.getElementById("oth").hidden = true;
+			document.getElementById("sid").hidden = true;
+			document.getElementById("des").hidden = false;
+		}
+
+	</script>
+
+	<div id="appID">
+		<section class="hero is-info">
+		  <div class="hero-body">
+		    <div class="container">
+		      <h1 class="title">
+		       	Recipe Title
+		      </h1>
+		      <h2 class="subtitle">
+		        Recipe Category
+		      </h2>
+		    </div>
+		  </div>
+		</section>
+		<div class="card">
+		  <div class="card-image">
+		    <figure class="image is-4by3">
+		      <img src="http://bulma.io/images/placeholders/1280x960.png" alt="Image">
+		    </figure>
+		  </div>
+		  <div class="card-content">
+		    <div class="content">
+		      <h2 class="subtitle">
+		        Ingredients
+		      </h2>
+		      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+		      Phasellus nec iaculis mauris.  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+		      Phasellus nec iaculis mauris.  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+		      Phasellus nec iaculis mauris.  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+		      Phasellus nec iaculis mauris. 
+		      <h2 class="subtitle">
+		        Directions
+		      </h2>
+		      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+		      Phasellus nec iaculis mauris.  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+		      Phasellus nec iaculis mauris.  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+		      Phasellus nec iaculis mauris.  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+		      Phasellus nec iaculis mauris. 
+		      <br>
+		      <small>11:09 PM - 1 Jan 2016</small>
+		    </div>
+		  </div>
+		</div>
+	</div>
+	<div id="sal" hidden>
+		
+	</div>
+	<div id="pas" hidden>
+		
+	</div>
+	<div id="mea" hidden>
+		
+	</div>
+	<div id="oth" hidden>
+		
+	</div>
+	<div id="sid" hidden>
+		
+	</div>
+	<div id="des" hidden>
+		
+	</div>
+
+	
+
+</body>
+</html>
